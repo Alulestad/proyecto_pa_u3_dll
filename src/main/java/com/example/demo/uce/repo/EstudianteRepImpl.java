@@ -36,4 +36,29 @@ public class EstudianteRepImpl implements IEstudianteRepo {
 		return (Estudiante) jpqlQuery.getSingleResult();
 	}
 
+	@Override
+	public Estudiante buscarPorGeneroQuery(String genero) {
+		Query jpqlQuery=this.entityManager.createQuery("select e from Estudiante e where e.genero = :datoGenero");
+		jpqlQuery.setParameter("datoGenero",genero);
+		
+		return (Estudiante) jpqlQuery.getSingleResult();
+
+	}
+
+	@Override
+	public Estudiante buscarPorCedulaQuery(String cedula) {
+		Query jpqlQuery=this.entityManager.createQuery("select e from Estudiante e where e.cedula = :datoCedula");
+		jpqlQuery.setParameter("datoCedula",cedula);
+		
+		return (Estudiante) jpqlQuery.getSingleResult();
+	}
+
+	@Override
+	public Estudiante buscarPorCiudadQuery(String ciudad) {
+		Query jpqlQuery=this.entityManager.createQuery("select e from Estudiante e where e.ciudad = :datoCiudad");
+		jpqlQuery.setParameter("datoCiudad",ciudad);
+		
+		return (Estudiante) jpqlQuery.getSingleResult();
+	}
+
 }

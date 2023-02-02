@@ -38,9 +38,34 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU3DllApplication.class, args);
 	}
+	/*INSERT INTO public.estudiante(
+	estu_id, estu_apellido, estu_cedula, estu_ciudad, estu_fecha_nacimiento, estu_genero, estu_hobie, estu_nombre, estu_pais, estu_salario)
+	VALUES (1, 'Molina', '123', 'Sangolquí', '1998-01-01', 'M', 'Dormir', 'Daniel', 'Ecuador', 0);
+	INSERT INTO public.estudiante(
+	estu_id, estu_apellido, estu_cedula, estu_ciudad, estu_fecha_nacimiento, estu_genero, estu_hobie, estu_nombre, estu_pais, estu_salario)
+	VALUES (2, 'Oña', '1234', 'Quito', '2000-01-01', 'M', 'Futbol', 'David', 'Ecuador', 1);
+	INSERT INTO public.estudiante(
+	estu_id, estu_apellido, estu_cedula, estu_ciudad, estu_fecha_nacimiento, estu_genero, estu_hobie, estu_nombre, estu_pais, estu_salario)
+	VALUES (3, 'Lopez', '12345', 'Cayambe', '2001-01-01', 'F', 'Discoteca', 'Maria', 'Ecuador', 2);
 	
+	*/
 	@Override
 	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		Estudiante estu1=this.estudianteService.buscarPorApellido("Molina");
+		Estudiante estu2=this.estudianteService.buscarPorGeneroQuery("F");
+		Estudiante estu3=this.estudianteService.buscarPorCedulaQuery("1234");
+		Estudiante estu4=this.estudianteService.buscarPorCiudadQuery("Sangolquí");
+		
+		System.out.println(estu1);
+		System.out.println(estu2);
+		System.out.println(estu3);
+		System.out.println(estu4);
+		
+	}
+	
+	
+	public void runALQUILADORA(String... args) throws Exception {
 		
 		Cliente cliente= new Cliente();
 		cliente.setApellido("Molina");
