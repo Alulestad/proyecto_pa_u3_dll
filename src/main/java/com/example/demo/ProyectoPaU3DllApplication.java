@@ -51,7 +51,7 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 	*/
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
+		// QUERY
 		Estudiante estu1=this.estudianteService.buscarPorApellido("Molina");
 		Estudiante estu2=this.estudianteService.buscarPorGeneroQuery("F");
 		Estudiante estu3=this.estudianteService.buscarPorCedulaQuery("1234");
@@ -62,6 +62,31 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		System.out.println(estu3);
 		System.out.println(estu4);
 		
+		//TypedQuery
+		System.out.println("TypedQuery");
+		Estudiante estu5=this.estudianteService.buscarPorNombreQueryTyped("Daniel");
+
+		System.out.println(estu5);
+		
+		//Named Query
+		System.out.println("Named Query");
+		Estudiante estu6=this.estudianteService.buscarPorNombreNamedQuery("Daniel");
+		System.out.println(estu6);
+		
+		//Named Query Typed
+		System.out.println("Named Query Typed");
+		Estudiante estu7=this.estudianteService.buscarPorNombreNamedQueryTyped("Daniel");
+		System.out.println(estu7);
+		
+		//Native Query
+		System.out.println("Native Query");
+		Estudiante estu8=this.estudianteService.buscarPorNombreNativeQuery("Daniel");
+		System.out.println(estu8);
+		
+		//Native Query Typed Named
+		System.out.println("Native Query Typed Named");
+		//Estudiante estu9=this.estudianteService.buscarPorNombreNativeQueryTypedNamed("Daniel");
+		//System.out.println(estu9);
 	}
 	
 	

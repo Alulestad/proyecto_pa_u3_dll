@@ -1,5 +1,6 @@
 package com.example.demo.uce.repo;
 
+import org.hibernate.boot.jaxb.mapping.NamedQuery;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.uce.modelo.Estudiante;
@@ -7,6 +8,7 @@ import com.example.demo.uce.modelo.Estudiante;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @Transactional
@@ -59,6 +61,53 @@ public class EstudianteRepImpl implements IEstudianteRepo {
 		jpqlQuery.setParameter("datoCiudad",ciudad);
 		
 		return (Estudiante) jpqlQuery.getSingleResult();
+	}
+
+	//Typed Query
+	@Override
+	public Estudiante buscarPorNombreQueryTyped(String nombre) {
+		// TODO Auto-generated method stub
+		//TypedQuery<Estudiante> myTypedQuery=this.entityManager.createQuery("JPQL", Estudiante.class);
+		TypedQuery<Estudiante> myTypedQuery=this.entityManager.createQuery("select e from Estudiante e where e.nombre = :datoNombre", Estudiante.class);
+		myTypedQuery.setParameter("datoNombre", nombre);
+		return myTypedQuery.getSingleResult();
+	}
+
+	
+	//named Query
+	@Override
+	public Estudiante buscarPorNombreNamedQuery(String nombre) {
+		// TODO Auto-generated method stub
+		Query myQuery=this.entityManager.createNamedQuery("Estudiante.buscarPorNom");
+		myQuery.setParameter("datoNombre", nombre);
+		return (Estudiante)myQuery.getSingleResult();
+	}
+
+	
+	//Named Typed Query
+	@Override
+	public Estudiante buscarPorNombreNamedQueryTyped(String nombre) {
+		TypedQuery<Estudiante> myTypedQuery=this.entityManager.createNamedQuery("Estudiante.buscarPorNom", Estudiante.class);
+		myTypedQuery.setParameter("datoNombre", nombre);
+		return myTypedQuery.getSingleResult();
+	}
+
+	//Native Query
+	@Override
+	public Estudiante buscarPorNombreNativeQuery(String nombre) {
+		
+		Query myQuery=this.entityManager.createNativeQuery("select * from estudiante where estu_nombre=:datoNombre",Estudiante.class);
+		myQuery.setParameter("datoNombre", nombre);
+		
+		return (Estudiante) myQuery.getSingleResult();
+	}
+
+	//Native Query Typed Named
+	@Override
+	public Estudiante buscarPorNombreNativeQueryTypedNamed(String nombre) {
+		TypedQuery<Estudiante> myQuery=this.entityManager.createNamedQuery("Estudiante.buscarPorNombreNative", Estudiante.class);
+		myQuery.setParameter("datoNombre", nombre);
+		return myQuery.getSingleResult();
 	}
 
 }
