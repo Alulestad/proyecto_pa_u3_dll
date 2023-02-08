@@ -1,9 +1,12 @@
 package com.example.demo.uce.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.uce.modelo.Estudiante;
+import com.example.demo.uce.modelo.DTO.EstudianteDTO;
 import com.example.demo.uce.repo.IEstudianteRepo;
 
 @Service
@@ -74,6 +77,44 @@ public class EstudianteServiceImpl implements IEstudianteService {
 	public Estudiante buscarPorNombreNativeQueryTypedNamed(String nombre) {
 		// TODO Auto-generated method stub
 		return this.estudianteRepo.buscarPorNombreNativeQueryTypedNamed(nombre);
+	}
+
+	//-------------------------------LISTAS----------------------------------------
+	// query
+	@Override
+	public List<Estudiante> buscarPorNombreQueryList(String nombre) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepo.buscarPorNombreQueryList(nombre);
+	}
+
+	//Named query
+	@Override
+	public List<Estudiante> buscarPorNombreNamedQueryList(String nombre) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepo.buscarPorNombreNamedQueryList(nombre);
+	}
+
+	//Native Query Typed Named
+	@Override
+	public List<Estudiante> buscarPorNombreNativeQueryTypedNamedList(String nombre) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepo.buscarPorNombreNativeQueryTypedNamedList(nombre);
+	}
+
+	//-------------------------------LISTAS CON PRIMER ELEMENTO----------------------------------------
+		// query
+	@Override
+	public Estudiante buscarPorNombreQueryListFistResult(String nombre) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepo.buscarPorNombreQueryListFistResult(nombre);
+	}
+
+	//-----------------------------------DTO--------------------------------------------
+	//Typed query
+	@Override
+	public EstudianteDTO buscarPorNombreQueryTypedDTO(String nombre) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

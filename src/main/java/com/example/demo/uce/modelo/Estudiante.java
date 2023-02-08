@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedNativeQueries;
 import jakarta.persistence.NamedNativeQuery;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -18,7 +19,13 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="estudiante")
 @NamedQuery(name = "Estudiante.buscarPorNom",query = "select e from Estudiante e where e.nombre = :datoNombre")
-@NamedNativeQuery(name = "Estudiante.buscarPorNombreNative",query ="select * from estudiante where estu_nombre= :datoNombre")
+@NamedQuery(name = "Estudiante.buscarPorNom1",query = "select e from Estudiante e where e.nombre = :datoNombre")
+@NamedQuery(name = "Estudiante.buscarPorNom2",query = "select e from Estudiante e where e.nombre = :datoNombre")
+//@NamedQueries({1..,2..,3..})
+@NamedNativeQueries({@NamedNativeQuery(name = "Estudiante.buscarPorNombreNative",query ="select * from estudiante where estu_nombre= :datoNombre",resultClass = Estudiante.class),
+	@NamedNativeQuery(name = "Estudiante.buscarPorNombreNative1",query ="select * from estudiante where estu_nombre= :datoNombre",resultClass = Estudiante.class),
+	@NamedNativeQuery(name = "Estudiante.buscarPorNombreNative2",query ="select * from estudiante where estu_nombre= :datoNombre",resultClass = Estudiante.class)
+})
 public class Estudiante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)

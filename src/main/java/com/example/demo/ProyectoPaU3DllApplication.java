@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -49,8 +50,40 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 	VALUES (3, 'Lopez', '12345', 'Cayambe', '2001-01-01', 'F', 'Discoteca', 'Maria', 'Ecuador', 2);
 	
 	*/
+	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		//Native Query Typed Named
+		System.out.println("Native Query Typed Named");
+		Estudiante estu9=this.estudianteService.buscarPorNombreNativeQueryTypedNamed("Daniel");
+		System.out.println(estu9);
+		
+		//-------------------------------LISTAS----------------------------------------
+		// QUERY list
+		System.out.println("Query");
+		List<Estudiante>  lista1_estu=this.estudianteService.buscarPorNombreQueryList("David");
+		lista1_estu.forEach(System.out::println);
+		
+		//eNamedQueryList
+		System.out.println("NamedQueryList");
+		List<Estudiante>  lista2_estu=this.estudianteService.buscarPorNombreNamedQueryList("David");
+		lista2_estu.forEach(System.out::println);
+		
+		//NativeQueryTypedNamedList
+		System.out.println("NativeQueryTypedNamedList");
+		List<Estudiante>  lista3_estu=this.estudianteService.buscarPorNombreNativeQueryTypedNamedList("David");
+		lista3_estu.forEach(System.out::println);
+		
+		
+		// Query 
+		System.out.println("Query");
+		Estudiante estu0=this.estudianteService.buscarPorNombreQueryListFistResult("David");
+		System.out.println(estu0);
+		
+	}
+	
+	public void runList(String... args) throws Exception {
 		// QUERY
 		Estudiante estu1=this.estudianteService.buscarPorApellido("Molina");
 		Estudiante estu2=this.estudianteService.buscarPorGeneroQuery("F");
@@ -85,8 +118,8 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		
 		//Native Query Typed Named
 		System.out.println("Native Query Typed Named");
-		//Estudiante estu9=this.estudianteService.buscarPorNombreNativeQueryTypedNamed("Daniel");
-		//System.out.println(estu9);
+		Estudiante estu9=this.estudianteService.buscarPorNombreNativeQueryTypedNamed("Daniel");
+		System.out.println(estu9);
 	}
 	
 	
