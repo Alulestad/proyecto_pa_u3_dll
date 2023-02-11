@@ -230,6 +230,28 @@ public class EstudianteRepImpl implements IEstudianteRepo {
 		
 		
 	}
+	
+	//-------Numero de datos actualizados en la DB
+
+	@Override
+	public int eliminarPorApellido(String apellido) {
+		// DELETE FROM estudiante WHERE estu_apellido='Teran'
+		Query query=this.entityManager.createQuery("DELETE FROM Estudiante e WHERE e.apellido=:datoEntrada");
+		query.setParameter("datoEntrada",apellido);
+		
+		//update hace referencia a la actualizacion de la DB
+		return query.executeUpdate(); 
+	}
+
+	@Override
+	public int actualizarPorApellido(String apellido, String nombre) {
+		// UPDATE estudiante SET estu_nombre='Edison' WHERE estu_apellido='Molina'
+		Query query=this.entityManager.createQuery("UPDATE Estudiante e SET e.nombre=:datoNombre WHERE e.apellido=:datoApellido");
+		query.setParameter("datoNombre",nombre);
+		query.setParameter("datoApellido",apellido);
+
+		return query.executeUpdate(); 
+	}
 
 	
 	

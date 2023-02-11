@@ -51,4 +51,10 @@ public interface IEstudianteService {
 	public Estudiante buscarPorNombreQueryTypedCriteria(String nombre);
 	
 	public List buscarPorNombreQueryTypedCriteriaAndOr(String nombre,String apellido, String genero);
+	
+	
+	
+	//-------
+	public int eliminarPorApellido(String apellido);
+	public int actualizarPorApellido(String apellido,String nombre);
 }

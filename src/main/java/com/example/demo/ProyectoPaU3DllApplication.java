@@ -46,17 +46,6 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU3DllApplication.class, args);
 	}
-	/*INSERT INTO public.estudiante(
-	estu_id, estu_apellido, estu_cedula, estu_ciudad, estu_fecha_nacimiento, estu_genero, estu_hobie, estu_nombre, estu_pais, estu_salario)
-	VALUES (1, 'Molina', '123', 'Sangolquí', '1998-01-01', 'M', 'Dormir', 'Daniel', 'Ecuador', 0);
-	INSERT INTO public.estudiante(
-	estu_id, estu_apellido, estu_cedula, estu_ciudad, estu_fecha_nacimiento, estu_genero, estu_hobie, estu_nombre, estu_pais, estu_salario)
-	VALUES (2, 'Oña', '1234', 'Quito', '2000-01-01', 'M', 'Futbol', 'David', 'Ecuador', 1);
-	INSERT INTO public.estudiante(
-	estu_id, estu_apellido, estu_cedula, estu_ciudad, estu_fecha_nacimiento, estu_genero, estu_hobie, estu_nombre, estu_pais, estu_salario)
-	VALUES (3, 'Lopez', '12345', 'Cayambe', '2001-01-01', 'F', 'Discoteca', 'Maria', 'Ecuador', 2);
-	
-	*/
 	
 
 	public void runTarea13(String... args) throws Exception {
@@ -140,6 +129,18 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
+		/*INSERT INTO public.estudiante(
+		estu_id, estu_apellido, estu_cedula, estu_ciudad, estu_fecha_nacimiento, estu_genero, estu_hobie, estu_nombre, estu_pais, estu_salario)
+		VALUES (1, 'Molina', '123', 'Sangolquí', '1998-01-01', 'M', 'Dormir', 'Daniel', 'Ecuador', 0);
+		INSERT INTO public.estudiante(
+		estu_id, estu_apellido, estu_cedula, estu_ciudad, estu_fecha_nacimiento, estu_genero, estu_hobie, estu_nombre, estu_pais, estu_salario)
+		VALUES (2, 'Oña', '1234', 'Quito', '2000-01-01', 'M', 'Futbol', 'David', 'Ecuador', 1);
+		INSERT INTO public.estudiante(
+		estu_id, estu_apellido, estu_cedula, estu_ciudad, estu_fecha_nacimiento, estu_genero, estu_hobie, estu_nombre, estu_pais, estu_salario)
+		VALUES (3, 'Lopez', '12345', 'Cayambe', '2001-01-01', 'F', 'Discoteca', 'Maria', 'Ecuador', 2);
+		
+		*/
+		
 		
 		//Native Query Typed Named
 		System.out.println("Native Query Typed Named");
@@ -184,6 +185,17 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		List<Estudiante> l_estu12=this.estudianteService.buscarPorNombreQueryTypedCriteriaAndOr("Daniel","Oña","F");
 		l_estu12.forEach(System.out::println);
 		
+		
+		//-------------------------
+		System.out.println("-------");
+		/*
+		System.out.println("actualizar por apellido");
+		int b=this.estudianteService.actualizarPorApellido("Molina","Bernardo");
+		System.out.println("b: "+b);
+		
+		System.out.println("Eliminar por apellido");
+		int a=this.estudianteService.eliminarPorApellido("Molina");
+		System.out.println("a: "+a);*/
 	}
 	
 	public void runList(String... args) throws Exception {
