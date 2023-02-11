@@ -52,5 +52,10 @@ public interface IEstudianteRepo {
 	//Typed query
 	public EstudianteDTO buscarPorNombreQueryTypedDTO(String nombre);
 	
-
+	
+	//--------------------------------------criteriaAPIquery--------------------------------------
+	public Estudiante buscarPorNombreQueryTypedCriteria(String nombre);
+	
+	public List buscarPorNombreQueryTypedCriteriaAndOr(String nombre,String apellido, String genero);
+	
 }

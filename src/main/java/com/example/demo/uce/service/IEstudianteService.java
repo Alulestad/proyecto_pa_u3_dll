@@ -44,6 +44,11 @@ public interface IEstudianteService {
 	public Estudiante buscarPorNombreQueryListFistResult(String nombre);
 	
 	//-----------------------------------DTO--------------------------------------------
-		//Typed query
-		public EstudianteDTO buscarPorNombreQueryTypedDTO(String nombre);
+	//Typed query
+	public EstudianteDTO buscarPorNombreQueryTypedDTO(String nombre);
+		
+	//--------------------------------------criteriaAPIquery--------------------------------------
+	public Estudiante buscarPorNombreQueryTypedCriteria(String nombre);
+	
+	public List buscarPorNombreQueryTypedCriteriaAndOr(String nombre,String apellido, String genero);
 }

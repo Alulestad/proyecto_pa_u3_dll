@@ -20,6 +20,7 @@ import com.example.demo.alquiladora.service.IVehiculoService;
 import com.example.demo.consultas.modelo.Automovil;
 import com.example.demo.consultas.service.IAutomovilService;
 import com.example.demo.uce.modelo.Estudiante;
+import com.example.demo.uce.modelo.DTO.EstudianteDTO;
 import com.example.demo.uce.service.IEstudianteService;
 
 @SpringBootApplication
@@ -57,8 +58,8 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 	
 	*/
 	
-	@Override
-	public void run(String... args) throws Exception {
+
+	public void runTarea13(String... args) throws Exception {
 		/*
 		INSERT INTO public.automovil(
 	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
@@ -137,7 +138,8 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		
 	}
 	
-	public void runTaller27(String... args) throws Exception {
+	@Override
+	public void run(String... args) throws Exception {
 		
 		//Native Query Typed Named
 		System.out.println("Native Query Typed Named");
@@ -165,6 +167,22 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		System.out.println("Query");
 		Estudiante estu0=this.estudianteService.buscarPorNombreQueryListFistResult("David");
 		System.out.println(estu0);
+		
+		//Native Query Typed Named DTO
+		System.out.println("Native Query Typed Named DTO");
+		EstudianteDTO estuDTO10=this.estudianteService.buscarPorNombreQueryTypedDTO("Daniel");
+		System.out.println(estuDTO10);
+		
+		//--------------------------------------criteriaAPIquery--------------------------------------
+		System.out.println("criteriaAPIquery");
+		Estudiante estu10=this.estudianteService.buscarPorNombreQueryTypedCriteria("Daniel");
+		System.out.println(estu10);
+		
+		System.out.println("criteriaAPIqueryAndOr");
+		List<Estudiante> l_estu11=this.estudianteService.buscarPorNombreQueryTypedCriteriaAndOr("Daniel","Molina","M");
+		l_estu11.forEach(System.out::println);
+		List<Estudiante> l_estu12=this.estudianteService.buscarPorNombreQueryTypedCriteriaAndOr("Daniel","Oña","F");
+		l_estu12.forEach(System.out::println);
 		
 	}
 	
@@ -205,6 +223,8 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		System.out.println("Native Query Typed Named");
 		Estudiante estu9=this.estudianteService.buscarPorNombreNativeQueryTypedNamed("Daniel");
 		System.out.println(estu9);
+		
+		
 	}
 	
 	
