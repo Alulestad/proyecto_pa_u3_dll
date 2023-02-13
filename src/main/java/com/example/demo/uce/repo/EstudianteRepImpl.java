@@ -1,5 +1,6 @@
 package com.example.demo.uce.repo;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.boot.jaxb.mapping.NamedQuery;
@@ -251,6 +252,26 @@ public class EstudianteRepImpl implements IEstudianteRepo {
 		query.setParameter("datoApellido",apellido);
 
 		return query.executeUpdate(); 
+	}
+
+	//con named query
+	@Override
+	public int eliminarPorNacimiento(LocalDateTime fecha_nacimiento) {
+		Query myQuery=this.entityManager.createNamedQuery("Estudiante.eliminarPorNacimiento");
+		myQuery.setParameter("datoEntrada", fecha_nacimiento);
+		
+		return myQuery.executeUpdate();
+
+	}
+
+	@Override
+	public int actualizarPorNacimiento(LocalDateTime fecha_nacimiento, String cedula) {
+		Query myQuery=this.entityManager.createNamedQuery("Estudiante.actualizarPorNacimiento");
+		myQuery.setParameter("datoNacimiento", fecha_nacimiento);
+		myQuery.setParameter("datoCedula", cedula);
+		
+		
+		return myQuery.executeUpdate();
 	}
 
 	

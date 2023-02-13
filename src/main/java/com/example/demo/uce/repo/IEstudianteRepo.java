@@ -1,5 +1,6 @@
 package com.example.demo.uce.repo;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.example.demo.uce.modelo.Estudiante;
@@ -62,5 +63,10 @@ public interface IEstudianteRepo {
 	//-------
 	public int eliminarPorApellido(String apellido);
 	public int actualizarPorApellido(String apellido,String nombre);
+	
+	
+	//con named query
+	public int eliminarPorNacimiento(LocalDateTime fecha_nacimiento);
+	public int actualizarPorNacimiento(LocalDateTime fecha_nacimiento,String cedula);
 	
 }

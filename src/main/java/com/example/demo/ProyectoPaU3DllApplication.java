@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -196,6 +197,16 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		System.out.println("Eliminar por apellido");
 		int a=this.estudianteService.eliminarPorApellido("Molina");
 		System.out.println("a: "+a);*/
+		
+		System.out.println("-------actualizar (cedula) y eliminar por fecha nacimiento");
+		System.out.println("actualizar");
+		int numActualizados=this.estudianteService.actualizarPorNacimiento(LocalDateTime.of(1998, 1, 1, 0, 0), "172149");
+		System.out.println("Datos actualizados: "+numActualizados);
+		
+		System.out.println("Eliminar");
+		int numEliminados=this.estudianteService.eliminarPorNacimiento(LocalDateTime.of(1998, 1, 1, 0, 0));
+		System.out.println("Datos eliminados: "+numEliminados);
+		
 	}
 	
 	public void runList(String... args) throws Exception {

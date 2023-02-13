@@ -21,6 +21,8 @@ import jakarta.persistence.Table;
 @NamedQuery(name = "Estudiante.buscarPorNom",query = "select e from Estudiante e where e.nombre = :datoNombre")
 @NamedQuery(name = "Estudiante.buscarPorNom1",query = "select e from Estudiante e where e.nombre = :datoNombre")
 @NamedQuery(name = "Estudiante.buscarPorNom2",query = "select e from Estudiante e where e.nombre = :datoNombre")
+@NamedQuery(name = "Estudiante.eliminarPorNacimiento",query = "DELETE FROM Estudiante e WHERE e.fechaNacimiento=:datoEntrada")
+@NamedQuery(name = "Estudiante.actualizarPorNacimiento",query = "UPDATE Estudiante e SET e.cedula=:datoCedula WHERE e.fechaNacimiento=:datoNacimiento")
 //@NamedQueries({1..,2..,3..})
 @NamedNativeQueries({@NamedNativeQuery(name = "Estudiante.buscarPorNombreNative",query ="select * from estudiante where estu_nombre= :datoNombre",resultClass = Estudiante.class),
 	@NamedNativeQuery(name = "Estudiante.buscarPorNombreNative1",query ="select * from estudiante where estu_nombre= :datoNombre",resultClass = Estudiante.class),

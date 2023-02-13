@@ -1,5 +1,6 @@
 package com.example.demo.uce.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,6 +145,19 @@ public class EstudianteServiceImpl implements IEstudianteService {
 	public int actualizarPorApellido(String apellido, String nombre) {
 		// TODO Auto-generated method stub
 		return this.estudianteRepo.actualizarPorApellido(apellido,nombre);
+	}
+
+	//con named query
+	@Override
+	public int eliminarPorNacimiento(LocalDateTime fecha_nacimiento) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepo.eliminarPorNacimiento(fecha_nacimiento);
+	}
+
+	@Override
+	public int actualizarPorNacimiento(LocalDateTime fecha_nacimiento, String cedula) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepo.actualizarPorNacimiento(fecha_nacimiento, cedula);
 	}
 	
 }
