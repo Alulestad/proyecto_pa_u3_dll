@@ -27,6 +27,8 @@ public interface IAutomovilRepo {
 	public List<Automovil> buscarPorMarcaNativeQueryTypedNamed(String marca);
 	public List<Automovil> buscarPorValuacionNativeQueryTypedNamed(BigDecimal valuacion);
 
-	
+	//------- Eliminacion con anio y actualizacion(valuacion) con chasis -------con named query
+	public int eliminarPorAnio(Integer anio);
+	public int actualizarPorChasis(String chasis,BigDecimal valuacion);
 	
 }

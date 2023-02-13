@@ -92,4 +92,17 @@ public class AutomovilServiceImpl implements IAutomovilService {
 		return this.automovilRepo.buscarPorValuacionNativeQueryTypedNamed(valuacion);
 	}
 
+	//------- Eliminacion con anio y actualizacion(valuacion) con chasis -------con named query
+	@Override
+	public int eliminarPorAnio(Integer anio) {
+		
+		return this.automovilRepo.eliminarPorAnio(anio);
+	}
+
+	@Override
+	public int actualizarPorChasis(String chasis, BigDecimal valuacion) {
+
+		return this.automovilRepo.actualizarPorChasis(chasis, valuacion);
+	}
+
 }

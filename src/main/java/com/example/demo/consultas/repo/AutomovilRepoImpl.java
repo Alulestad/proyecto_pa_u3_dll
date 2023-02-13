@@ -112,4 +112,26 @@ public class AutomovilRepoImpl implements IAutomovilRepo {
 		return myQuery.getResultList();
 	}
 
+	//------- Eliminacion con anio y actualizacion(valuacion) con chasis -------con named query
+	@Override
+	public int eliminarPorAnio(Integer anio) {
+		Query mQuery=entityManager.createNamedQuery("Automovil.eliminarPorAnio");
+		mQuery.setParameter("datoAnio", anio);
+		
+		
+		return mQuery.executeUpdate();
+	}
+
+	@Override
+	public int actualizarPorChasis(String chasis, BigDecimal valuacion) {
+		Query mQuery=entityManager.createNamedQuery("Automovil.actualizarPorChasis");
+		mQuery.setParameter("datoValuacion", valuacion);
+		mQuery.setParameter("datoChasis", chasis);
+		
+		
+		return mQuery.executeUpdate();
+	}
+	
+	
+
 }

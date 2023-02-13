@@ -19,6 +19,8 @@ import jakarta.persistence.Table;
 @NamedQuery(name = "Automovil.buscarPorAnio",query = "select e from Automovil e where e.anio = :datoAnio")
 @NamedQuery(name = "Automovil.buscarPorMarca",query = "select e from Automovil e where e.marca = :datoMarca")
 @NamedQuery(name = "Automovil.buscarPorValuacion",query = "select e from Automovil e where e.valuacion = :datoValuacion")
+@NamedQuery(name = "Automovil.eliminarPorAnio",query = "DELETE FROM Automovil e WHERE e.anio=:datoAnio")
+@NamedQuery(name = "Automovil.actualizarPorChasis",query = "UPDATE Automovil e SET e.valuacion=:datoValuacion WHERE e.chasis=:datoChasis")
 //@NamedQueries({1..,2..,3..})
 @NamedNativeQueries({
 	@NamedNativeQuery(name = "Automovil.buscarPorAnioNative",query ="select * from automovil where auto_anio= :datoAnio",resultClass = Automovil.class),

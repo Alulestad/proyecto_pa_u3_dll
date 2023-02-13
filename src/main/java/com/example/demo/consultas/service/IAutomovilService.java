@@ -1,6 +1,7 @@
 package com.example.demo.consultas.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.example.demo.consultas.modelo.Automovil;
@@ -26,4 +27,8 @@ public interface IAutomovilService {
 	public List<Automovil> buscarPorAnioNativeQueryTypedNamed(Integer anio);
 	public List<Automovil> buscarPorMarcaNativeQueryTypedNamed(String marca);
 	public List<Automovil> buscarPorValuacionNativeQueryTypedNamed(BigDecimal valuacion);
+	
+	//------- Eliminacion con anio y actualizacion(valuacion) con chasis -------con named query
+	public int eliminarPorAnio(Integer anio);
+	public int actualizarPorChasis(String chasis,BigDecimal valuacion);
 }

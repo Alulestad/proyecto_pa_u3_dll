@@ -130,6 +130,18 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
+		System.out.println("-------Eliminacion con anio y actualizacion(valuacion) con chasis");
+		System.out.println("actualizar");
+		int numActualizados=this.automovilService.actualizarPorChasis("asdfasdf",new BigDecimal(9999));
+		System.out.println("Datos actualizados: "+numActualizados);
+		
+		System.out.println("Eliminar");
+		int numEliminados=this.automovilService.eliminarPorAnio(2002);
+		System.out.println("Datos eliminados: "+numEliminados);
+	}
+	
+
+	public void runListasyYpdates(String... args) throws Exception {
 		/*INSERT INTO public.estudiante(
 		estu_id, estu_apellido, estu_cedula, estu_ciudad, estu_fecha_nacimiento, estu_genero, estu_hobie, estu_nombre, estu_pais, estu_salario)
 		VALUES (1, 'Molina', '123', 'Sangolquí', '1998-01-01', 'M', 'Dormir', 'Daniel', 'Ecuador', 0);
@@ -196,7 +208,7 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		
 		System.out.println("Eliminar por apellido");
 		int a=this.estudianteService.eliminarPorApellido("Molina");
-		System.out.println("a: "+a);*/
+		System.out.println("a: "+a);
 		
 		System.out.println("-------actualizar (cedula) y eliminar por fecha nacimiento");
 		System.out.println("actualizar");
@@ -205,7 +217,8 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		
 		System.out.println("Eliminar");
 		int numEliminados=this.estudianteService.eliminarPorNacimiento(LocalDateTime.of(1998, 1, 1, 0, 0));
-		System.out.println("Datos eliminados: "+numEliminados);
+		System.out.println("Datos eliminados: "+numEliminados);*/
+		
 		
 	}
 	
