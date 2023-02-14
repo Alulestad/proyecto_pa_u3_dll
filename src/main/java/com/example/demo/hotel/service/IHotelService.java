@@ -1,12 +1,11 @@
-package com.example.demo.hotel.repo;
+package com.example.demo.hotel.service;
 
 import java.util.List;
 
 import com.example.demo.hotel.modelo.Hotel;
 
-public interface IHotelRepo {
+public interface IHotelService {
 
-	//buscar hoteles por tipo de habitacion por ejemplo habitaciones que sean VIP
 	public List<Hotel> buscarHotelInnerJoin(String tipoHabitacion);
 	
 	public List<Hotel> buscarHotelOuterRightJoin(String tipoHabitacion);

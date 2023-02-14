@@ -20,6 +20,10 @@ import com.example.demo.alquiladora.service.IRentaService;
 import com.example.demo.alquiladora.service.IVehiculoService;
 import com.example.demo.consultas.modelo.Automovil;
 import com.example.demo.consultas.service.IAutomovilService;
+import com.example.demo.hotel.modelo.Habitacion;
+import com.example.demo.hotel.modelo.Hotel;
+import com.example.demo.hotel.repo.IHotelRepo;
+import com.example.demo.hotel.service.IHotelService;
 import com.example.demo.uce.modelo.Estudiante;
 import com.example.demo.uce.modelo.DTO.EstudianteDTO;
 import com.example.demo.uce.service.IEstudianteService;
@@ -38,7 +42,8 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 	private IRentaService iRentaService;
 	@Autowired
 	private IVehiculoService iVehiculoService;
-	
+	@Autowired
+	private IHotelService hotelService;
 	
 	//Automovil
 	@Autowired
@@ -49,87 +54,12 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 	}
 	
 
-	public void runTarea13(String... args) throws Exception {
-		/*
-		INSERT INTO public.automovil(
-	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
-	VALUES (1, 2002, 'asdfasdf', '2022-09-22', 'Volkswagen', 'PCI-123', 15000);
 	
-	INSERT INTO public.automovil(
-	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
-	VALUES (2, 2003, 'asdgasdg', '2022-08-22', 'Chevrolet', 'PCA-123', 4000);
-	
-	INSERT INTO public.automovil(
-	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
-	VALUES (3, 2004, 'asdhasdh', '2022-07-22', 'BMW', 'PCE-123', 7000);
-	
-	INSERT INTO public.automovil(
-	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
-	VALUES (4, 2005, 'qwerqwer', '2022-06-22', 'Toyota', 'PCO-123', 17000);
-	
-	INSERT INTO public.automovil(
-	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
-	VALUES (5, 2006, 'qwetqwet', '2022-05-22', 'Suzuki', 'PCU-123', 19000);
-	
-	INSERT INTO public.automovil(
-	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
-	VALUES (6, 2007, 'qweyqwey', '2022-04-22', 'Hyundai', 'PAU-123', 22000);
-	
-	INSERT INTO public.automovil(
-	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
-	VALUES (7, 2007, 'zxcvzxcv', '2022-03-22', 'Hyundai', 'PEU-123', 20000);
-		*/
-		
-		//TypedQuery
-		System.out.println("TypedQuery");
-		List<Automovil> lista1_automovil = automovilService.buscarPorAnioQueryTyped(2002);
-		lista1_automovil.forEach(System.out::println);
-		
-		List<Automovil> lista2_automovil = automovilService.buscarPorMarcaQueryTyped("Hyundai");
-		lista2_automovil.forEach(System.out::println);
-		
-		List<Automovil> lista3_automovil = automovilService.buscarPorValuacionQueryTyped(new BigDecimal(4000));
-		lista3_automovil.forEach(System.out::println);
-		
-		//NamedQuery
-		System.out.println("NamedQuery");
-		List<Automovil> lista4_automovil = automovilService.buscarPorAnioNamedQuery(2002);
-		lista4_automovil.forEach(System.out::println);
-		
-		List<Automovil> lista5_automovil = automovilService.buscarPorMarcaNamedQuery("Hyundai");
-		lista5_automovil.forEach(System.out::println);
-		
-		List<Automovil> lista6_automovil = automovilService.buscarPorValuacionNamedQuery(new BigDecimal(4000));
-		lista6_automovil.forEach(System.out::println);
-		
-		//Native Query
-		System.out.println("Native Query");
-		List<Automovil> lista7_automovil = automovilService.buscarPorAnioNativeQuery(2002);
-		lista7_automovil.forEach(System.out::println);
-		
-		List<Automovil> lista8_automovil = automovilService.buscarPorMarcaNativeQuery("Hyundai");
-		lista8_automovil.forEach(System.out::println);
-		
-		List<Automovil> lista9_automovil = automovilService.buscarPorValuacionNativeQuery(new BigDecimal(4000));
-		lista9_automovil.forEach(System.out::println);
-		
-		
-		//Native Query Typed Named
-		System.out.println("Native Query Typed Named");
-		List<Automovil> lista10_automovil = automovilService.buscarPorAnioNativeQueryTypedNamed(2002);
-		lista10_automovil.forEach(System.out::println);
-		
-		List<Automovil> lista11_automovil = automovilService.buscarPorMarcaNativeQueryTypedNamed("Hyundai");
-		lista11_automovil.forEach(System.out::println);
-		
-		List<Automovil> lista12_automovil = automovilService.buscarPorValuacionNativeQueryTypedNamed(new BigDecimal(4000));
-		lista12_automovil.forEach(System.out::println);
-		
-		
-	}
 	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		/*
 		System.out.println("-------Eliminacion con anio y actualizacion(valuacion) con chasis");
 		System.out.println("actualizar");
 		int numActualizados=this.automovilService.actualizarPorChasis("asdfasdf",new BigDecimal(9999));
@@ -138,6 +68,53 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		System.out.println("Eliminar");
 		int numEliminados=this.automovilService.eliminarPorAnio(2002);
 		System.out.println("Datos eliminados: "+numEliminados);
+		*/
+		
+
+		
+		System.out.println("LEFT JOIN");
+		List<Hotel> l2_h =hotelService.buscarHotelOuterLeftJoin("VIP");
+		for (Hotel h: l2_h) {
+			System.out.println(h.getNombre());
+			for (Habitacion ha: h.getHabitaciones()) {
+				System.out.println("Las habitaciones de: "+h.getNombre()+"  son: "+ha.getNumero());
+			}
+		}
+		
+		System.out.println("Right JOIN");
+		List<Hotel> l3_h =hotelService.buscarHotelOuterRightJoin("VIP");
+		l3_h.forEach(System.out::println);
+		for (Hotel h: l3_h) {
+			//System.out.println(h.getNombre());
+			/*if(h.getHabitaciones()!=null) {
+				for (Habitacion ha: h.getHabitaciones()) {
+					System.out.println("Las habitaciones de: "+h.getNombre()+"  son: "+ha.getNumero());
+				}
+			}*/
+
+		}
+		
+		/*
+		List<Hotel> l2_h =hotelService.buscarHotelOuterRightJoin("VIP");
+		l2_h.forEach(System.out::println);
+		List<Hotel> l3_h =hotelService.buscarHotelOuterLeftJoin("VIP");
+		l3_h.forEach(System.out::println);
+		List<Hotel> l4_h =hotelService.buscarHotelOuterFullJoin("VIP");
+		l4_h.forEach(System.out::println);
+		List<Hotel> l5_h =hotelService.buscarHotelJoinFetch("VIP");
+		l5_h.forEach(System.out::println);
+		*/
+		
+		List<Hotel> l1_h =hotelService.buscarHotelInnerJoin("VIP");
+		l1_h.forEach(System.out::println);
+		System.out.println("Lo mismo pero mejorado");
+		for (Hotel h: l1_h) {
+			System.out.println(h.getNombre());
+			for (Habitacion ha: h.getHabitaciones()) {
+				System.out.println("Las habitaciones de: "+h.getNombre()+"  son: "+ha.getNumero());
+			}
+		}
+		
 	}
 	
 
@@ -218,6 +195,85 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		System.out.println("Eliminar");
 		int numEliminados=this.estudianteService.eliminarPorNacimiento(LocalDateTime.of(1998, 1, 1, 0, 0));
 		System.out.println("Datos eliminados: "+numEliminados);*/
+		
+		
+	}
+	
+	public void runTarea13(String... args) throws Exception {
+		/*
+		INSERT INTO public.automovil(
+	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
+	VALUES (1, 2002, 'asdfasdf', '2022-09-22', 'Volkswagen', 'PCI-123', 15000);
+	
+	INSERT INTO public.automovil(
+	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
+	VALUES (2, 2003, 'asdgasdg', '2022-08-22', 'Chevrolet', 'PCA-123', 4000);
+	
+	INSERT INTO public.automovil(
+	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
+	VALUES (3, 2004, 'asdhasdh', '2022-07-22', 'BMW', 'PCE-123', 7000);
+	
+	INSERT INTO public.automovil(
+	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
+	VALUES (4, 2005, 'qwerqwer', '2022-06-22', 'Toyota', 'PCO-123', 17000);
+	
+	INSERT INTO public.automovil(
+	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
+	VALUES (5, 2006, 'qwetqwet', '2022-05-22', 'Suzuki', 'PCU-123', 19000);
+	
+	INSERT INTO public.automovil(
+	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
+	VALUES (6, 2007, 'qweyqwey', '2022-04-22', 'Hyundai', 'PAU-123', 22000);
+	
+	INSERT INTO public.automovil(
+	auto_id, auto_anio, auto_chasis, auto_fecha_matricula, auto_marca, auto_placa, auto_valuacion)
+	VALUES (7, 2007, 'zxcvzxcv', '2022-03-22', 'Hyundai', 'PEU-123', 20000);
+		*/
+		
+		//TypedQuery
+		System.out.println("TypedQuery");
+		List<Automovil> lista1_automovil = automovilService.buscarPorAnioQueryTyped(2002);
+		lista1_automovil.forEach(System.out::println);
+		
+		List<Automovil> lista2_automovil = automovilService.buscarPorMarcaQueryTyped("Hyundai");
+		lista2_automovil.forEach(System.out::println);
+		
+		List<Automovil> lista3_automovil = automovilService.buscarPorValuacionQueryTyped(new BigDecimal(4000));
+		lista3_automovil.forEach(System.out::println);
+		
+		//NamedQuery
+		System.out.println("NamedQuery");
+		List<Automovil> lista4_automovil = automovilService.buscarPorAnioNamedQuery(2002);
+		lista4_automovil.forEach(System.out::println);
+		
+		List<Automovil> lista5_automovil = automovilService.buscarPorMarcaNamedQuery("Hyundai");
+		lista5_automovil.forEach(System.out::println);
+		
+		List<Automovil> lista6_automovil = automovilService.buscarPorValuacionNamedQuery(new BigDecimal(4000));
+		lista6_automovil.forEach(System.out::println);
+		
+		//Native Query
+		System.out.println("Native Query");
+		List<Automovil> lista7_automovil = automovilService.buscarPorAnioNativeQuery(2002);
+		lista7_automovil.forEach(System.out::println);
+		
+		List<Automovil> lista8_automovil = automovilService.buscarPorMarcaNativeQuery("Hyundai");
+		lista8_automovil.forEach(System.out::println);
+		
+		List<Automovil> lista9_automovil = automovilService.buscarPorValuacionNativeQuery(new BigDecimal(4000));
+		lista9_automovil.forEach(System.out::println);
+		
+		
+		//Native Query Typed Named
+		System.out.println("Native Query Typed Named");
+		List<Automovil> lista10_automovil = automovilService.buscarPorAnioNativeQueryTypedNamed(2002);
+		lista10_automovil.forEach(System.out::println);
+		
+		List<Automovil> lista11_automovil = automovilService.buscarPorMarcaNativeQueryTypedNamed("Hyundai");
+		lista11_automovil.forEach(System.out::println);
+		
+		List<Automovil> lista12_automovil = automovilService.buscarPorValuacionNativeQueryTypedNamed(new BigDecimal(4000));
+		lista12_automovil.forEach(System.out::println);
 		
 		
 	}
