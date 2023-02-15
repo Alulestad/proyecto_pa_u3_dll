@@ -1,19 +1,14 @@
-package com.example.demo.hotel.repo;
+package com.example.demo.hotel.service;
 
 import java.util.List;
 
 import com.example.demo.hotel.modelo.Habitacion;
-import com.example.demo.hotel.modelo.Hotel;
 
-public interface IHabitacionRepo {
+public interface IHabitacionService {
 
-	
 	
 	//
 	public List<Habitacion> buscarHabitacionOuterRightJoin();
 	public List<Habitacion> buscarHabitacionOuterLeftJoin();
 	public List<Habitacion> buscarHabitacionOuterFullJoin( );
-	
-
-	
 }

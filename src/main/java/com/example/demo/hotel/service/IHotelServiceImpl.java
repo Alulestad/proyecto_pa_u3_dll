@@ -44,4 +44,25 @@ public class IHotelServiceImpl implements IHotelService {
 		return this.hotelRepo.buscarHotelJoinFetch(tipoHabitacion);
 	}
 
+	//
+	@Override
+	public List<Hotel> buscarHotelOuterRightJoin() {
+		// TODO Auto-generated method stub
+		return this.hotelRepo.buscarHotelOuterRightJoin();
+	}
+
+	@Override
+	public List<Hotel> buscarHotelOuterLeftJoin() {
+		// TODO Auto-generated method stub
+		return this.hotelRepo.buscarHotelOuterLeftJoin();
+	}
+
+	@Override
+	public List<Hotel> buscarHotelOuterFullJoin() {
+		// TODO Auto-generated method stub
+		return this.hotelRepo.buscarHotelOuterFullJoin();
+	}
+	
+	
+
 }

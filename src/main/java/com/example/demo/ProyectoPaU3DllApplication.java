@@ -23,6 +23,7 @@ import com.example.demo.consultas.service.IAutomovilService;
 import com.example.demo.hotel.modelo.Habitacion;
 import com.example.demo.hotel.modelo.Hotel;
 import com.example.demo.hotel.repo.IHotelRepo;
+import com.example.demo.hotel.service.IHabitacionService;
 import com.example.demo.hotel.service.IHotelService;
 import com.example.demo.uce.modelo.Estudiante;
 import com.example.demo.uce.modelo.DTO.EstudianteDTO;
@@ -44,6 +45,8 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 	private IVehiculoService iVehiculoService;
 	@Autowired
 	private IHotelService hotelService;
+	@Autowired
+	private IHabitacionService habitacionService;
 	
 	//Automovil
 	@Autowired
@@ -77,7 +80,7 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		for (Hotel h: l2_h) {
 			System.out.println(h.getNombre());
 			for (Habitacion ha: h.getHabitaciones()) {
-				System.out.println("Las habitaciones de: "+h.getNombre()+"  son: "+ha.getNumero());
+				System.out.println("Las habitaciones de: "+h.getNombre()+"  son: "+ha.getNumero()+ " Tipo: "+ha.getTipo());
 			}
 		}
 		
@@ -111,8 +114,65 @@ public class ProyectoPaU3DllApplication implements CommandLineRunner{
 		for (Hotel h: l1_h) {
 			System.out.println(h.getNombre());
 			for (Habitacion ha: h.getHabitaciones()) {
-				System.out.println("Las habitaciones de: "+h.getNombre()+"  son: "+ha.getNumero());
+				System.out.println("Las habitaciones de: "+h.getNombre()+"  son: "+ha.getNumero()+ " Tipo: "+ha.getTipo());
 			}
+		}
+		
+		System.out.println(" JOIN FETCH");
+		List<Hotel> l1_hotel_fetch =hotelService.buscarHotelInnerJoin("VIP");
+		l1_hotel_fetch.forEach(System.out::println);
+		System.out.println("Lo mismo pero mejorado");
+		for (Hotel h: l1_hotel_fetch) {
+			System.out.println(h.getNombre());
+			for (Habitacion ha: h.getHabitaciones()) {
+				System.out.println("Las habitaciones de: "+h.getNombre()+"  es: "+ha.getNumero()+ " Tipo: "+ha.getTipo());
+			}
+		}
+		
+		//left JOIN HOTEL
+		System.out.println("left JOIN sin condicion HOTEL");
+		List<Hotel> l1_left_Join =hotelService.buscarHotelOuterLeftJoin();
+		//NO EXsiste redundancia en las listas de hotel
+		for (Hotel h: l1_left_Join) {
+			System.out.println(h.getNombre());
+			for(Habitacion ha:h.getHabitaciones()) {
+				System.out.println(ha.getNumero());
+			}
+			System.out.println();
+		}
+		//left JOIN habitacion
+		System.out.println("left JOIN sin condicion habitacion");
+		List<Habitacion> l1_left_Join_HA =habitacionService.buscarHabitacionOuterLeftJoin(); //aca obtengo un nulo
+		//pues obtengo un nulo por la naturaleza de la consulta de hotel con left join
+		for (Habitacion ha: l1_left_Join_HA) {
+				System.out.println(ha!=null? ha.getNumero(): null);
+
+		}
+		
+		//Right JOIN HOTEL
+		System.out.println("Right JOIN sin condicion HOTEL");
+		List<Hotel> l1_right_Join = hotelService.buscarHotelOuterRightJoin();
+		// NO EXsiste redundancia en las listas de hotel
+		for (Hotel h : l1_right_Join) {
+
+			System.out.println(h != null ? h.getNombre() : null);
+			if (h != null) {
+				for (Habitacion ha : h.getHabitaciones()) {
+					//System.out.println(ha.getNumero());
+				}
+			}
+
+			//System.out.println();
+		}
+		
+		//Right JOIN habitacion
+		System.out.println("Right JOIN sin condicion habitacion");
+		List<Habitacion> l1_right_Join_HA = habitacionService.buscarHabitacionOuterRightJoin(); // aca obtengo un nulo
+		// pues obtengo un nulo por la naturaleza de la consulta de hotel con left join
+		for (Habitacion ha : l1_right_Join_HA) {
+			System.out.println(ha != null ? ha.getNumero() : null);
+			
+			System.out.println(ha.getHotel());
 		}
 		
 	}
